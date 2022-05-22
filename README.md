@@ -37,7 +37,8 @@ initialize spring-boot project
 ## Add gRPC Dependencies & Build Plugins
 
 ```xml
-
+<project>
+    ...
     <dependencies>
         <!-- grpc & protobuf-->
 		<dependency>
@@ -61,8 +62,7 @@ initialize spring-boot project
 			<version>3.8.0</version>
 		</dependency>
     </dependencies>
- 
-
+    
     <build>
 		<extensions>
 			<extension>
@@ -84,22 +84,24 @@ initialize spring-boot project
 
 				<configuration>
 					<!-- <protocExecutable>/usr/local/bin/protoc</protocExecutable> -->
-					<protocArtifact>com.google.protobuf:protoc:3.14.0:exe:${os.detected.classifier}</protocArtifact>
+					<protocArtifact>com.google.protobuf:protoc:3.8.0:exe:${os.detected.classifier}</protocArtifact>
 					<pluginId>grpc-java</pluginId>
-					<pluginArtifact>io.grpc:protoc-gen-grpc-java:1.46.0:exe:${os.detected.classifier}</pluginArtifact>
+					<pluginArtifact>io.grpc:protoc-gen-grpc-java:1.21.0:exe:${os.detected.classifier}</pluginArtifact>
 				</configuration>
 
 				<executions>
 					<execution>
 						<goals>
 							<goal>compile</goal>
-							<goal>test-compile</goal>
+							<goal>compile-custom</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
+    ...
+</project>
 ```
 
 ## Create proto schema
@@ -119,6 +121,8 @@ EventRequest.java
 EventRequestOrBuilder.java
 EventResponse.java
 EventResponseOrBuilder.java
+> ls -1 /Users/aincc/Works/spring/grpc-ex/target/generated-sources/protobuf/grpc-java/io/vicevil4/grpc/proto
+NewdataServiceGrpc.java
 ```
 
 ## References
